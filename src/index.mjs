@@ -4,6 +4,8 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
+app.use(express.json());
+
 const mockUsers = [
     {id: 1, username:"albert", displayname:"albert"},
     {id: 2, username:"joseph", displayname:"joseph"},
@@ -31,6 +33,11 @@ if(filter && value)
 );
 return response.send(mockUsers);
 })
+
+app.post("/api/users", (request, response) => {
+    console.log(request.body);
+    return response.send(200);
+});
 
 app.get('/api/users/:id', (request, response) => {
     console.log(request.params);
